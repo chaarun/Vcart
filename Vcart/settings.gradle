@@ -1,0 +1,2 @@
+rootProject.name='Vcart'
+include ':app'
