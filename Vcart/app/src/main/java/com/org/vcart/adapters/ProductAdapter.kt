@@ -44,11 +44,11 @@ class ProductAdapter(var context: Context, var products: List<Product> = arrayLi
             Observable.create(ObservableOnSubscribe<MutableList<CartItemQuantity>> {
                 itemView.addToCart.setOnClickListener { view ->
                     val item = CartItemQuantity(product)
-                    VCart.addItem(item,itemView.context)
+                    VCart.addItem(item, itemView.context)
                     //notify users like toast
                     Snackbar.make(
                         (itemView.context as MainActivity).coordinator,
-                        "${product.name} added to your cart",
+                        "${product.name} added to the cart",
                         Snackbar.LENGTH_LONG
                     ).show()
                     it.onNext(VCart.getCart(itemView.context))
@@ -56,7 +56,7 @@ class ProductAdapter(var context: Context, var products: List<Product> = arrayLi
 
                 itemView.removeItem.setOnClickListener { view ->
                     val item = CartItemQuantity(product)
-                    VCart.removeItem(item,itemView.context)
+                    VCart.removeItem(item, itemView.context)
                     Snackbar.make(
                         (itemView.context as MainActivity).coordinator,
                         "${product.name} removed from your cart",

@@ -14,7 +14,7 @@ import com.org.vcart.adapters.ProductAdapter
 import com.org.vcart.service.APIConfigURL
 import com.org.vcart.service.APIService
 import com.org.vcart.utils.Logg
-import com.org.vcart.utils.Product
+import com.org.vcart.utils.ProductTest
 import com.org.vcart.utils.VCart
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var apiService: APIService
     private lateinit var productAdapter: ProductAdapter
 
-    private var products = listOf<Product>()
+    private var totalProducts = ProductTest()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +50,6 @@ class MainActivity : AppCompatActivity() {
             getProductsData()
         }
 
-//        val layoutManager = StaggeredGridLayoutManager(this, Lin)
-
         products_recyclerview.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
@@ -70,19 +68,22 @@ class MainActivity : AppCompatActivity() {
 
 
     fun getProductsData() {
-        apiService.getData().enqueue(object : retrofit2.Callback<List<Product>> {
-            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-                Logg.d("Failed::")
+        apiService.getData().enqueue(object : retrofit2.Callback<ProductTest> {
+            override fun onFailure(call: Call<ProductTest>, t: Throwable) {
+                Logg.d("Failed to show response::")
                 print(t.message)
                 Log.d("data error from api", t.message)
                 Toast.makeText(this@MainActivity, t.message, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+            override fun onResponse(call: Call<ProductTest>, response: Response<ProductTest>) {
                 swipeRefreshLayout.isRefreshing = false
                 // your code to get data from the list
-                products = response.body()!!
-                productAdapter = ProductAdapter(this@MainActivity, products)
+                totalProducts = response.body()!!
+
+                Logg.d("productes response" + totalProducts)
+                productAdapter = ProductAdapter(this@MainActivity, totalProducts.products)
+
                 products_recyclerview.adapter = productAdapter
             }
         })

@@ -48,7 +48,7 @@
             android:layout_height="wrap_content">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/basketButton"
+                android:id="@+id/cartButton"
                 android:src="@drawable/ic_cart"
                 android:tint="@android:color/white"
                 app:fabSize="normal"
@@ -63,14 +63,13 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:layout_alignRight="@id/basketButton"
+                android:layout_alignRight="@id/cartButton"
                 android:id="@+id/cart_size"
                 android:textSize="13sp"
                 android:background="@drawable/round_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@id/basketButton"
-                tools:targetApi="lollipop"
+                android:layout_alignEnd="@id/cartButton"
                 android:layout_marginLeft="15dp"/>
 
     </RelativeLayout>

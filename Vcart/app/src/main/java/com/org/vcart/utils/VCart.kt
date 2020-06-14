@@ -6,7 +6,6 @@ import io.paperdb.Paper
 
 class VCart {
     companion object {
-
         fun addItem(cartItem: CartItemQuantity, context: Context) {
             val cart = getCart(context)
             val targetItem = cart.singleOrNull { it.product.id == cartItem.product.id }
@@ -14,13 +13,12 @@ class VCart {
                 cartItem.quantity++
                 cart.add(cartItem)
             } else {
-
                 targetItem.quantity++
             }
             saveCart(cart, context)
         }
 
-        fun removeItem(cartItem: CartItemQuantity, context: Context) {
+            fun removeItem(cartItem: CartItemQuantity, context: Context) {
             val cart = getCart(context)
             val targetItem = cart.singleOrNull { it.product.id == cartItem.product.id }
             if (targetItem != null) {
@@ -48,7 +46,6 @@ class VCart {
         }
 
         fun getCart(context: Context): MutableList<CartItemQuantity> {
-
 //           val prefs = PreferenceManager.getDefaultSharedPreferences(context)
 //            val emptyList = Gson().toJson(ArrayList<CartItemQuantity>())
 //            Logg.d("getCart"+ emptyList)

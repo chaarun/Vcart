@@ -14,6 +14,6 @@ data class Product(
     var image: String? = null,
 
     @SerializedName("price")
-    var price: String? = null  //,, override val size: Int
+    var price: String? = null
 
 )

@@ -59,23 +59,21 @@
                 android:id="@+id/removeItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/holo_blue_light"
+                android:background="@android:color/holo_red_dark"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="4dp"
                 android:src="@drawable/ic_minus_cart"
-                android:tint="@android:color/white"
-                card_view:targetApi="o" />
+                android:tint="@android:color/white" />
 
             <ImageButton
                 android:id="@+id/addToCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/black"
+                android:background="@android:color/holo_green_dark"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="4dp"
                 android:src="@drawable/ic_plus_cart"
-                android:tint="@android:color/white"
-                card_view:targetApi="o" />
+                android:tint="@android:color/white" />
 
         </LinearLayout>
 

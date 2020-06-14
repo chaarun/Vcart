@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.org.vcart.R
 import com.org.vcart.adapters.VCartAdapter
+import com.org.vcart.utils.Logg
 import com.org.vcart.utils.VCart
 import kotlinx.android.synthetic.main.activity_vcart.*
 
@@ -41,10 +42,13 @@ class VCartActivity : AppCompatActivity() {
         vcart_recyclerView.adapter = adapter
         vcart_recyclerView.layoutManager = LinearLayoutManager(this)
 
+        var filtered = ".,₹"
         var totalPrice = VCart.getCart(this).fold(0.toDouble()) { acc, cartItem ->
-            acc + cartItem.quantity.times(cartItem.product.price!!.toDouble())
+            acc + cartItem.quantity.times(cartItem.product.price!!.filterNot { filtered.indexOf(it) > -1 }
+                .toDouble())
         }
-        total_price.text = "${totalPrice}"
+        Logg.d("totalPrice" + totalPrice)
+        total_price.text = "$totalPrice"
 
         proceed.setOnClickListener {
             Toast.makeText(this, "Completed..", Toast.LENGTH_SHORT).show()
